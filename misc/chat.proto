@@ -1,0 +1,25 @@
+option java_package = "pl.edu.agh.dsrg.sr.chat.protos";
+option java_outer_classname = "ChatOperationProtos";
+
+// ChatManagement768624 channel message
+message ChatAction {
+    required ActionType action = 1;
+    required string channel = 2;
+    required string nickname = 3;
+
+    enum ActionType{
+        JOIN = 0;
+        LEAVE = 1;
+    }
+}
+
+// state synchronization message
+// "management" - all operations are JOIN
+message ChatState {
+    repeated ChatAction state = 1;
+}
+
+// chat message
+message ChatMessage {
+    required string message = 1;
+}
