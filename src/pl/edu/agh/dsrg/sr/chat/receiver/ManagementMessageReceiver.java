@@ -59,7 +59,7 @@ public class ManagementMessageReceiver extends ReceiverAdapter {
     @Override
     public synchronized void setState(InputStream input) throws Exception {
         System.out.println("\t[System] Syncing state");
-        ChatState inputState = (ChatState) Util.objectFromStream(new DataInputStream(input));
+        ChatState inputState = ChatState.parseFrom(new DataInputStream(input));
         for (ChatAction chatAction : inputState.getStateList()) {
             ArrayList<String> users = usersConnectedToChannels.get(chatAction.getChannel());
             addUser(chatAction, users);
